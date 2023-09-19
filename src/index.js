@@ -1,29 +1,14 @@
-import { getHeroeById } from "./bases/08-imp-exp";
-import heroes from "./data/heroes";
+const apiKey = "a4zJGDfGOZ1Nsix5yreFUbm4QLUBg7QW";
 
-// const promesa = new Promise((resolve, reject) => {
-//   setTimeout(() => {
-//     const heroe = getHeroeById(1);
-//     resolve(heroe)
-//   }, 2000);
-// });
+const peticion = fetch(
+  `https://api.giphy.com/v1/gifs/random?api_key=${apiKey}`
+);
 
-// promesa.then((heroe) => {
-//   console.log("Then de la promesa",heroe);
-// });
+peticion
+  .then((resp) => {
+    resp.json().then((data) => {
+      console.log(data);
+    });
+  })
 
-
-
-
-const getHeroeByIdAsync=(id)=>{
-
-return new Promise((resolve, reject) => {
-  setTimeout(() => {
-    const heroe = getHeroeById(1);
-    resolve(heroe)
-  }, 2000);
-});
-
-}
-
-getHeroeByIdAsync(10).then(heroe=>console.log('Heroe',heroe))
+  .catch(console.warn);
